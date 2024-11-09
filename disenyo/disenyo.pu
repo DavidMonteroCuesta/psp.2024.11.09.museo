@@ -1,0 +1,28 @@
+@startuml Doc
+
+class Museo {
+    + main(String[] args) : void
+}
+
+class Sala {
+    - visitantes: int
+    - entra() : void
+    - sale() : void 
+}
+
+class Entrada implements Runnable{
+    - run() : void
+}
+
+class Salida implements Runnable{
+    - run() : void
+}
+
+
+Museo o-- Sala : instancia
+Entrada --> Sala
+Salida --> Sala
+
+@enduml
+
+
