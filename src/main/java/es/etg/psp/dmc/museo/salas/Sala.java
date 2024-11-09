@@ -12,11 +12,11 @@ public class Sala {
         Sala.visitantes = visitantes;
     }
 
-    public static void entrar(){
+    public synchronized static void entrar(){
         visitantes++;
     }
 
-    public static void salir(){
+    public synchronized static void salir(){
         visitantes--;
     }
     
