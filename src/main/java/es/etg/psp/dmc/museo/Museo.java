@@ -5,20 +5,19 @@ import es.etg.psp.dmc.museo.salas.acciones.Entrada;
 import es.etg.psp.dmc.museo.salas.acciones.Salida;
 import static es.etg.psp.dmc.museo.util.Texto.*;
 public class Museo {
-    public static void main(String[] args) {
-        Thread[] entradas = new Thread[CANT_VISITANTES_ENTRADA];
-        Thread[] salidas = new Thread[CANT_VISITANTES_SALIDA];
+    public static void main(String[] args) throws InterruptedException {
+        Thread[] threads = new Thread[CANT_VISITANTES_ENTRADA + CANT_VISITANTES_SALIDA];
 
-        for (int i = VALOR_CERO; i < CANT_VISITANTES_ENTRADA; i++) {
-            entradas[i] = new Thread(new Entrada());
-            entradas[i].start();
+        for (int i = VALOR_CERO; i < CANT_VISITANTES_ENTRADA + CANT_VISITANTES_SALIDA; i++){
+            if (i < CANT_VISITANTES_ENTRADA) threads[i] = new Thread(new Entrada());
+            else threads[i] = new Thread(new Salida());
+            threads[i].start();
         }
 
-        for (int i = VALOR_CERO; i < CANT_VISITANTES_SALIDA; i++) {
-            salidas[i] = new Thread(new Salida());
-            salidas[i].start();
+        for (Thread thread : threads) {
+            thread.join();
+    
         }
-
         System.out.println(Sala.getVisitantes());
     }
 }
