@@ -12,12 +12,8 @@ public class Sala {
         Sala.visitantes = visitantes;
     }
 
-    public synchronized static void entrar(){
-        visitantes++;
-    }
-
-    public synchronized static void salir(){
-        visitantes--;
-    }
-    
+    public synchronized static void visitar(boolean entra){
+        if (entra) visitantes++;
+        else visitantes--;
+    }    
 }

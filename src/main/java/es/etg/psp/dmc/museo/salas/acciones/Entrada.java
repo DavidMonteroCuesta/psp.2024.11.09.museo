@@ -5,6 +5,6 @@ import es.etg.psp.dmc.museo.salas.Sala;
 public class Entrada implements Runnable{
     @Override
     public void run() {
-        Sala.entrar();
+        Sala.visitar(true);
     }
 }
