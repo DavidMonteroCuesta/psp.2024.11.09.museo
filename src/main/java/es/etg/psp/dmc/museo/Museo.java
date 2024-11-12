@@ -14,6 +14,8 @@ public class Museo {
             threads[i].start();
         }
             
+        for (Thread thread : threads) 
+            thread.join();
         System.out.println(Sala.getVisitantes());
     }
 }

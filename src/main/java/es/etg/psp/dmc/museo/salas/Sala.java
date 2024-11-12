@@ -12,8 +12,12 @@ public class Sala {
         Sala.visitantes = visitantes;
     }
 
-    public synchronized static void visitar(boolean entra){
+    public synchronized static void visitar(boolean entra) throws InterruptedException{
+        while (visitantes <= 0 && !entra)
+            Sala.class.wait();
+
         if (entra) visitantes++;
         else visitantes--;
+        Sala.class.notify();
     }    
 }
