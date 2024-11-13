@@ -18,7 +18,7 @@ public class Sala {
 
         if (entra) visitantes++;
         else visitantes--;
-        System.out.println(Thread.currentThread().getName());
         Sala.class.notify();
+        System.out.println(Thread.currentThread().getName());
     }    
 }
